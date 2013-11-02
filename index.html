@@ -80,6 +80,12 @@
 				});
 				$('#new-question-button').on('click', function () {
 					var name = $('#new-question-name').val();
+					
+					if (!name.match(/^[A-Za-z0-9\-]+$/)) {
+						alert("Question filenames may only contain letters, numbers and dashes");
+						return;
+					}
+					
 					var url = 'edit-questions.php/' + encodeURIComponent(name);
 					navigateTo(url);
 				});
