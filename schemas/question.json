@@ -49,6 +49,15 @@
 					"href": "{image}"
 				}
 			],
+			"properties": {
+				"image": {
+					"type": "string",
+					"media": {
+						"type": "image/*",
+						"binaryEncoding": "base64"
+					}
+				}
+			},
 			"additionalProperties": {
 				"type": "string"
 			},
