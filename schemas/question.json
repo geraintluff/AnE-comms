@@ -43,12 +43,6 @@
 		"message": {
 			"type": "object",
 			"title": "Translate",
-			"links": [
-				{
-					"rel": "image",
-					"href": "{image}"
-				}
-			],
 			"properties": {
 				"image": {
 					"type": "string",
