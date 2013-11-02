@@ -75,7 +75,7 @@
 				});
 				$('#new-question-button').on('click', function () {
 					var name = $('#new-question-name').val();
-					var url = 'edit-questions.php?f=' + encodeURIComponent(name);
+					var url = 'edit-questions.php/' + encodeURIComponent(name);
 					navigateTo(url);
 				});
 			</script>

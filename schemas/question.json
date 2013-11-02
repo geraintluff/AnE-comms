@@ -1,43 +1,91 @@
-{"title": "Question",
- "type": "object",
- "properties": {
-     "questionText": {
-	 "type": "object",
-	 "allOf": [{"$ref": "#/definitions/message"}]
-     },
-     "answers": {
-	 "type": "array",
-	 "items": {
-	     "allOf": [{"$ref": "#/definitions/message"}]
-	 }
-     }
- },
-
- "default": {
-     "type": "basic",
-     "questionText": {"en": "What is your favourite colour?",
- 		      "de": "Was ist seine leibste Farbe?"},
-     "answers": [{"en": "Green", "de": "Grüne"},
-		 {"en": "Blue", "de": "Blau"}]
- },
-
- "definitions": {
-     "message": {"type": "object",
-		 "title": "Translate",
-		 "links": [{"rel": "image", "href": "{image}"}],
-		 "additionalProperties": {"type": "string"},
-		 "default": {"en":"Question?"}},
-
-     "editableQuestion": {"type": "object",
-			  "allOf": [{"$ref": "#"}],
-			  "links": [{"rel": "edit", "href": "", "method":"PUT"}]},
-
-     "editableList": {"type": "array",
-		      "items": {
-			  "type": "string",
-			  "allOf": [{"$ref": "#/"}],
-			  "links": [{"rel": "edit", "href": "edit-questions.php/x?f={$}"}]
-		      }
-		     }
- }
+{
+	"title": "Question",
+	"type": "object",
+	"properties": {
+		"questionText": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/message"
+				}
+			]
+		},
+		"answers": {
+			"type": "array",
+			"items": {
+				"allOf": [
+					{
+						"$ref": "#/definitions/message"
+					}
+				]
+			}
+		}
+	},
+	"default": {
+		"type": "basic",
+		"questionText": {
+			"en": "What is your favourite colour?",
+			"de": "Was ist seine leibste Farbe?"
+		},
+		"answers": [
+			{
+				"en": "Green",
+				"de": "Grüne"
+			},
+			{
+				"en": "Blue",
+				"de": "Blau"
+			}
+		]
+	},
+	"definitions": {
+		"message": {
+			"type": "object",
+			"title": "Translate",
+			"links": [
+				{
+					"rel": "image",
+					"href": "{image}"
+				}
+			],
+			"additionalProperties": {
+				"type": "string"
+			},
+			"default": {
+				"en": "Question?"
+			}
+		},
+		"editableQuestion": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#"
+				}
+			],
+			"links": [
+				{
+					"rel": "edit",
+					"href": "",
+					"method": "PUT"
+				}
+			]
+		},
+		"editableList": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"allOf": [
+					{
+						"$ref": "#/"
+					}
+				],
+				"links": [
+					{
+						"rel": "edit",
+						"href": "edit-questions.php/{$}"
+					}
+				]
+			}
+		}
+	}
 }

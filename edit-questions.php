@@ -1,10 +1,10 @@
 <?php
 
-if ($_GET['f']) {
-	$fnam = $_GET['f'];
+$fnam = substr($_SERVER['PATH_INFO'], 1);;
+if ($fnam) {
 	
 	if (preg_match('/^[A-Za-z0-9+-\.]+$/', $fnam)) {
-		header("Content-type: application/json;profile=/~meredydd/ane/schemas/question.json#/definitions/editableQuestion");
+		header("Content-type: application/json;profile=/AnE-comms/schemas/question.json#/definitions/editableQuestion");
 
 		if ($_SERVER['REQUEST_METHOD']=='GET') {
 			$v = file_get_contents("questions/$fnam.json");
@@ -23,7 +23,7 @@ if ($_GET['f']) {
 		exit();
 	}
 } else {
-	header("Content-type: application/json;profile=/~meredydd/ane/schemas/question.json#/definitions/editableList");
+	header("Content-type: application/json;profile=/AnE-comms/schemas/question.json#/definitions/editableList");
 	echo '[';
 
 	// List available schemas
