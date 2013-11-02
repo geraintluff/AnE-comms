@@ -22,7 +22,9 @@
 	      } else {
 	      var url = window.location.hash.substring(1);
 	      $('#url-bar').val(url);
+	      if (url != 'edit-questions.php) {
 	      $(function() {$('#addnew').hide();});
+	      }
 	      }
 	      $('#go').click();
 	    </script>

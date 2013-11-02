@@ -23,7 +23,7 @@
 
  "definitions": {
      "message": {"type": "object",
-		 "title": "Translated message",
+		 "title": "Translate",
 		 "links": [{"rel": "image", "href": "{image}"}],
 		 "additionalProperties": {"type": "string"},
 		 "default": {"en":"Question?"}},
@@ -33,12 +33,10 @@
 			  "links": [{"rel": "edit", "href": "", "method":"PUT"}]},
 
      "editableList": {"type": "array",
-		      "title": "Edit these",
 		      "items": {
-			  "title": "Edit this!",
 			  "type": "string",
 			  "allOf": [{"$ref": "#/"}],
-			  "links": [{"rel": "gohere", "href": "edit-questions.php/x?f={$}"}]
+			  "links": [{"rel": "edit", "href": "edit-questions.php/x?f={$}"}]
 		      }
 		     }
  }
