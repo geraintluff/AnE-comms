@@ -1,0 +1,35 @@
+{"title": "Question",
+ "type": "object",
+ "properties": {
+     "questionText": {
+	 "type": "object",
+	 "allOf": [{"$ref": "#/definitions/message"}]
+     },
+     "answers": {
+	 "type": "array",
+	 "items": {
+	     "allOf": [{"$ref": "#/definitions/message"}]
+	 }
+     }
+ },
+
+ "definitions": {
+     "message": {"type": "object",
+		 "title": "Translated message",
+		 "links": [{"rel": "image", "href": "{image}"}]},
+
+     "editableQuestion": {"type": "object",
+			  "allOf": [{"$ref": "#/"}],
+			  "links": [{"rel": "edit", "href": ""}]},
+
+     "editableList": {"type": "array",
+		      "title": "Edit these",
+		      "items": {
+			  "title": "Edit this!"
+			  "type": "string",
+			  "allOf": [{"$ref": "#/"}],
+			  "links": [{"rel": "self", "href": "edit-questions?f={$}"}]
+		      }
+		     }
+ }
+}
