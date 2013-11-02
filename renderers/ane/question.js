@@ -12,8 +12,9 @@ Jsonary.render.register({
 	return jq.html();
     },
     
-    filter: function(data, schemas, uiState) {
-	return data.readOnly() && schemas.containsUrl("question.json#/definitions/message");
+    filter: {
+    	readOnly: true,
+    	schema: "question.json#/definitions/message"
     }
 });
 
@@ -31,7 +32,8 @@ Jsonary.render.register({
 
 	return result;
     },
-    filter: function(data, schemas, uiState) {
-	return data.readOnly() && schemas.containsUrl("question.json");
+    filter: {
+        readOnly: true,
+        schema: "question.json"
     }
 });

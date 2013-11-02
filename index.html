@@ -1,39 +1,142 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<title>JSON browser</title>
-		<link rel="stylesheet" href="css/page.index.css" />
-		<link rel="stylesheet" href="renderers/basic.jsonary.css" />
-		<link rel="stylesheet" href="renderers/common.css" />
-	</head>
-	<body>
-		<table width=100%>
-			<tr>
-				<td width=80%>
-					<input id="url-bar" value="example-schema.json"/>
-				</td>
-				<td>
-					<input id="go" type="submit" value="Go" />
-				</td>
-			</tr>
-		</table>
-		<div id="main">
-		<script src="js/jquery.js"></script>
-		<script src="jsonary.js"></script>
-		<script src="plugins/jsonary.undo.js"></script>
-		<script src="renderers/basic.jsonary.js"></script>
-		<script src="renderers/list-schemas.js"></script>
-		<script src="renderers/list-links.js"></script>
-		<!--<script src="renderers/ane/question.js"></script>-->
-		<script src="js/page.index.js"></script>
-		<script>
-			if (window.location.hash == "#" || window.location.hash == "") {
-				window.location.replace("#" + $('#url-bar').val());
-			} else {
-				var url = window.location.hash.substring(1);
-				$('#url-bar').val(url);
+		<style>
+			body {
+				background-color: #F8F8F0;
+				padding-bottom: 160px;
+				font-family: Verdana, sans-serif;
+				font-size: 0.9em;
 			}
-			$('#go').click();
+
+			#url-bar, #go {
+				display: block;
+				position: fixed;
+				top: 0;
+				width: 100%;
+				left: 0;
+				right: 60px;
+				height: 1.5em;
+				margin: 0;
+				padding: 0;
+			}
+			
+			#url-bar {
+				padding-left: 0.5em;
+				padding-right: -0.5em;
+			}
+			
+			#go {
+				top: 0px;
+				right: 0px;
+				left: auto;
+				width: 60px;
+			}
+
+			#main {
+				top: 1.5em;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				overflow: auto;
+				margin-top: 3px;
+				padding: 1em;
+			}
+
+			td {
+				vertical-align: top;
+			}
+		</style>
+	</head>
+	<body class="jsonary">
+		<script src="js/jsonary-super-bundle.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="renderers/list-schemas.js"></script>
+		<script src="renderers/ane/question.js"></script>-->
+
+		<input id="url-bar" value="package.json"/>
+		<div id="go" class="button">Go</div>
+		<div id="main"></div>
+
+		<hr>
+		
+		<div id="addnew">
+			<h2>Add new question:</h2>
+
+			Name: <input type="text" id="new-question-name"/>
+			<button id="new-question-button">Create new question</button>
+			<script>
+				$('#new-question-name').keypress(function (e) {
+					if (e.which === 13) {
+						$('#new-question-button').click();
+						return false;
+					}
+				});
+				$('#new-question-button').on('click', function () {
+					var name = $('#new-question-name').val();
+					var url = 'edit-questions.php?f=' + encodeURIComponent(name);
+					navigateTo(url);
+				});
+			</script>
+		</div>
+
+		<script>
+			var urlBar = document.getElementById('url-bar');
+			var goButton = document.getElementById('go');
+			
+			// Navigation using the URL bar
+			urlBar.onkeydown = function (e) {
+				if (e.keyCode == 13) {
+					navigateGo();
+				}
+			};
+			goButton.onclick = navigateGo;			
+			function navigateGo() {
+				Jsonary.location.addHistoryPoint();
+				var url = urlBar.value;
+				navigateTo(url);
+			}
+			
+			// Catch changes in the query/hash
+			var locationListener = Jsonary.location.onChange(function (location, query) {
+				navigateTo(query.get('/url'));
+				var promptVisible = /edit-questions\.php/.test(query.get('/url'));
+				if (promptVisible) {
+					$('#addnew').show();
+				} else {
+					$('#addnew').hide();
+				}
+			}, false);
+
+			// Follow links
+			Jsonary.addLinkHandler(function(link, data, request) {
+				Jsonary.location.addHistoryPoint();
+				navigateTo(link.href, request);
+				return true;
+			});
+			
+			function navigateTo(url, request) {
+				if (!request) {
+					request = Jsonary.getData(url);
+				}
+				url = request.url.replace(/#$/, "");
+				var shortUrl = url;
+				var urlBase = window.location.href.split('#')[0].split('?')[0].replace(/\/[^\/]*$/, '/');
+				if (url.substring(0, urlBase.length) == urlBase) {
+					shortUrl = url.substring(urlBase.length) || "./";
+				}
+
+				urlBar.value = url;
+				locationListener.ignore(function () {
+					Jsonary.location.query.set('', {url: shortUrl});
+				});
+
+				Jsonary.render('main', request);
+			}
+			
+			// First render
+			navigateTo(Jsonary.location.query.get('/url') || urlBar.value);
 		</script>
 	</body>
 </html>
