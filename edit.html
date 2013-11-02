@@ -22,8 +22,17 @@
 	      } else {
 	      var url = window.location.hash.substring(1);
 	      $('#url-bar').val(url);
+	      $(function() {$('#addnew').hide();});
 	      }
 	      $('#go').click();
 	    </script>
+	  </div>
+
+	  <div id="addnew">
+	    <h2>Add new question:</h2>
+
+	    Name: <input id="qname"/>
+	    <button onclick="window.open('#edit-questions.php?f='+encodeURIComponent($('#qname').val()))">Create new question</button>
+
 	</body>
 </html>
