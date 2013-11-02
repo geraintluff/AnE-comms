@@ -5,7 +5,31 @@
 
 .translation .english {
 	background: #FFF;
+	padding: 0.2em;
 }
 .translation .foreign {
+	position: relative;
 	background: #CDE;
+	padding: 0.2em;
+	padding-left: 3em;
+	border-top: 1px solid #888;
+}
+.translation .foreign-key {
+	display: block;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 2em;
+
+	padding: 0.2em;
+	background-color: #B0C8DF;
+	font-weight: bold;
+	text-align: center;
+	border-right: 1px solid #888;
+}
+
+.answers {
+	margin-left: 4em;
 }

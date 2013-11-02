@@ -2,12 +2,17 @@ var lang;
 
 // Render translated text
 Jsonary.render.register({
-	renderHtml: function(data) {
+	renderHtml: function(data, context) {
 		lang = lang || 'de';
 		var result = '<div class="translation">';
-
-		result += '<div class="foreign">' + Jsonary.escapeHtml(data.propertyValue(lang)) + '</div>';
-		result += '<div class="english">' + Jsonary.escapeHtml(data.propertyValue('en')) + '</div>';
+		data.properties(['en'], function (key, subData) {
+			result += '<div class="english">' + context.renderHtml(subData) + '</div>';
+		}, function (key, subData) {
+			result += '<div class="foreign">'
+				+ '<span class="foreign-key">' + Jsonary.escapeHtml(key) + '</span>&nbsp;'
+				+ context.renderHtml(subData)
+			+ '</div>';
+		});
 		return result + '</div>';
 	},
 
@@ -19,20 +24,16 @@ Jsonary.render.register({
 
 
 // Render a question
-
 Jsonary.render.register({
-	renderHtml: function(data, cx) {
-		result = '<div class="question">'+cx.renderHtml(data.property("questionText"))+'</div>';
+	renderHtml: function(data, context) {
+		result = '<div class="question">' + context.renderHtml(data.property("questionText"))+'</div>';
 
-		var answers = data.property("answers");
-		for(var i=0; i<answers.length(); i++) {
-			result += '<div class="answer">'+cx.renderHtml(answers.item(i))+'</div>';
-		}
-
+		result += '<div class="answers">';
+		result += context.renderHtml(data.property('answers'));
+		result += '</div>';
 		return result;
 	},
 	filter: {
-		readOnly: true,
 		schema: "question.json"
 	}
 });

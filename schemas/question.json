@@ -21,6 +21,7 @@
 			}
 		}
 	},
+	"required": ["questionText", "answers"],
 	"default": {
 		"type": "basic",
 		"questionText": {
