@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 .question {
     width: 100%;
     background: linear-gradient(to bottom, #114C85,#11477A);

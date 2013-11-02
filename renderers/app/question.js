@@ -5,8 +5,13 @@ Jsonary.render.register({
     renderHtml: function(data, ctx) {
 	lang = lang || 'de';
 	var result = '<div class="translation">';
+
+	var img = data.propertyValue('image');
+	if (img) { result += '<img src="data:;base64,' + img+ '"/>'; }
+
 	result += '<div class="foreign">' + ctx.renderHtml(data.property(lang)) + '</div>';
-	result += '<div class="english">' + ctx.renderHtml(data.property('en')) + '</div>';
+	result += '<div class="english">' + ctx.renderHtml(data.property('en')) + '</div></div>';
+	return result;
     },
     
     filter: {
@@ -24,7 +29,7 @@ Jsonary.render.register({
 	result += '<div class="answers">';
 	var answers = data.property('answers');
 
-	for (var i=0; i<answers.length; i++) {
+	for (var i=0; i<answers.length(); i++) {
 	    result += '<div class="answer">' + context.renderHtml(answers.item(i)) + '</div>';
 	}
 	result += '</div>';
@@ -34,3 +39,11 @@ Jsonary.render.register({
 	schema: "question.json"
     }
 });
+
+$(function() {
+    $('body').on('click', '.answer', null, function (evt) {
+	$('.answer').removeClass('selected');
+	$(this).addClass('selected');
+    });
+});
+

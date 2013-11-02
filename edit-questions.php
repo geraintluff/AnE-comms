@@ -8,7 +8,7 @@ if ($fnam) {
 
 		if ($_SERVER['REQUEST_METHOD']=='GET') {
 			$v = file_get_contents("questions/$fnam.json");
-			if ($v) { echo $v; } else { echo '{"questionText":{"en":""},"answers":[]}'; }
+			if ($v) { echo $v; } else { echo '{"questionText":{"en":"Question?"},"answers":[{"en":"Answer 1"}, {"en":"Answer 2"}]}'; }
 		} else {
 	
 			$v = file_get_contents("php://input");
@@ -31,7 +31,7 @@ if ($fnam) {
 
 	$first = true;
 	foreach ($files as $f) {
-		if (strpos($f, ".json") != strlen($f)-5 && $f{0} != 0) {
+		if (strpos($f, ".json") != strlen($f)-5 || $f{0} == '.') {
 			continue;
 		}
 	

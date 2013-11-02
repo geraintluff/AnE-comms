@@ -1,4 +1,4 @@
-function() {
+var x = function() {
     var req;
 
     function loadUri(url) {
@@ -6,7 +6,8 @@ function() {
 	$('#question').empty().addClass("loading");
 	window.scrollTo(0, 0);
 	req.getData(function(data, request) {
-	    $('#main').removeClass("loading").empty().renderJson(data);
+	    console.log(data.value());
+	    $('#question').removeClass("loading").empty().renderJson(data);
 	});
     }
 

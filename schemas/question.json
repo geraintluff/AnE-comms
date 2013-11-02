@@ -42,7 +42,6 @@
 	"definitions": {
 		"message": {
 			"type": "object",
-			"title": "Translate",
 			"properties": {
 				"image": {
 					"type": "string",

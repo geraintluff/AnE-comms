@@ -56,10 +56,14 @@
 		<script src="renderers/ane/question.js"></script>
 		<link rel="stylesheet" href="renderers/ane/question.css">
 
-		<input id="url-bar" value="package.json"/>
-		<div id="go" class="button">Go</div>
+		<!--<input id="url-bar" value="package.json"/>
+		<div id="go" class="button">Go</div>-->
 		<div id="main"></div>
 
+		<hr>
+		
+		<a id="mainmenu" href="index.html">Back to list of questions</a>
+		
 		<hr>
 		
 		<div id="addnew">
@@ -83,22 +87,6 @@
 		</div>
 
 		<script>
-			var urlBar = document.getElementById('url-bar');
-			var goButton = document.getElementById('go');
-			
-			// Navigation using the URL bar
-			urlBar.onkeydown = function (e) {
-				if (e.keyCode == 13) {
-					navigateGo();
-				}
-			};
-			goButton.onclick = navigateGo;			
-			function navigateGo() {
-				Jsonary.location.addHistoryPoint();
-				var url = urlBar.value;
-				navigateTo(url);
-			}
-			
 			// Catch changes in the query/hash
 			var locationListener = Jsonary.location.onChange(function (location, query) {
 				navigateTo(query.get('/url'));
@@ -128,7 +116,7 @@
 					shortUrl = url.substring(urlBase.length) || "./";
 				}
 
-				urlBar.value = url;
+				//urlBar.value = url;
 				locationListener.ignore(function () {
 					Jsonary.location.query.set('', {url: shortUrl});
 				});
@@ -137,7 +125,7 @@
 			}
 			
 			// First render
-			navigateTo(Jsonary.location.query.get('/url') || urlBar.value);
+			navigateTo(Jsonary.location.query.get('/url') || "edit-questions.php");
 		</script>
 	</body>
 </html>
