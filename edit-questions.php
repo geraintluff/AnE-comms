@@ -4,10 +4,11 @@ if ($_GET['f']) {
 	$fnam = $_GET['f'];
 	
 	if (preg_match('/^[A-Za-z0-9+-\.]+$/', $fnam)) {
+		header("Content-type: application/json;profile=/~meredydd/ane/schemas/question.json#/definitions/editableQuestion");
 
 		if ($_SERVER['REQUEST_METHOD']=='GET') {
 			$v = file_get_contents("questions/$fnam.json");
-			echo $v;
+			if ($v) { echo $v; } else { echo '{"questionText":{"en":""},"answers":[]}'; }
 		} else {
 	
 			$v = file_get_contents("php://input");
@@ -15,6 +16,7 @@ if ($_GET['f']) {
 			$x = fopen("questions/$fnam.json", "w");
 			fwrite($x, $v);
 			fclose($x);
+			echo $v;
 		}
 	} else {
 		header("403 Permission Denied");

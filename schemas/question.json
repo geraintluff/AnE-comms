@@ -13,22 +13,32 @@
      }
  },
 
+ "default": {
+     "type": "basic",
+     "questionText": {"en": "What is your favourite colour?",
+ 		      "de": "Was ist seine leibste Farbe?"},
+     "answers": [{"en": "Green", "de": "Grüne"},
+		 {"en": "Blue", "de": "Blau"}]
+ },
+
  "definitions": {
      "message": {"type": "object",
 		 "title": "Translated message",
-		 "links": [{"rel": "image", "href": "{image}"}]},
+		 "links": [{"rel": "image", "href": "{image}"}],
+		 "additionalProperties": {"type": "string"},
+		 "default": {"en":"Question?"}},
 
      "editableQuestion": {"type": "object",
-			  "allOf": [{"$ref": "#/"}],
-			  "links": [{"rel": "edit", "href": ""}]},
+			  "allOf": [{"$ref": "#"}],
+			  "links": [{"rel": "edit", "href": "", "method":"PUT"}]},
 
      "editableList": {"type": "array",
 		      "title": "Edit these",
 		      "items": {
-			  "title": "Edit this!"
+			  "title": "Edit this!",
 			  "type": "string",
 			  "allOf": [{"$ref": "#/"}],
-			  "links": [{"rel": "self", "href": "edit-questions?f={$}"}]
+			  "links": [{"rel": "gohere", "href": "edit-questions.php/x?f={$}"}]
 		      }
 		     }
  }

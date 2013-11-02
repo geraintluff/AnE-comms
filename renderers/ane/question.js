@@ -13,7 +13,7 @@ Jsonary.render.register({
     },
     
     filter: function(data, schemas, uiState) {
-	return schemas.containsUrl("question.json#/definitions/message");
+	return data.readOnly() && schemas.containsUrl("question.json#/definitions/message");
     }
 });
 
@@ -21,10 +21,17 @@ Jsonary.render.register({
 // Render a question
 
 Jsonary.render.register({
-    renderHtml: function(data) {
-	
+    renderHtml: function(data, cx) {
+	result = '<div class="question">'+cx.renderHtml(data.property("questionText"))+'</div>';
+
+	var answers = data.property("answers");
+	for(var i=0; i<answers.length(); i++) {
+	    result += '<div class="answer">'+cx.renderHtml(answers.item(i))+'</div>';
+	}
+
+	return result;
     },
     filter: function(data, schemas, uiState) {
-	return schemas.containsUrl("question.json");
+	return data.readOnly() && schemas.containsUrl("question.json");
     }
 });
