@@ -23,7 +23,7 @@ if ($fnam) {
 		exit();
 	}
 } else {
-	header("Content-type: application/json;profile=/AnE-comms/schemas/question.json#/definitions/editableList");
+	header("Content-type: application/json;profile=/AnE-comms/schemas/question.json#/definitions/idList");
 	echo '[';
 
 	// List available schemas

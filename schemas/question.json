@@ -70,6 +70,18 @@
 				}
 			]
 		},
+		"idList": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"links": [
+					{
+						"rel": "full",
+						"href": "edit-questions.php/{$}"
+					}
+				]
+			}
+		},
 		"editableList": {
 			"type": "array",
 			"items": {
