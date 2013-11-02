@@ -1,0 +1,22 @@
+.translation .english {
+    margin-top: 0.2em;
+    font-size: 0.6em;
+}
+.translation .foreign {
+}
+
+.answers {
+    padding: 40px;
+}
+
+.answers .answer {
+    margin: 20px;
+
+    border: 2px solid #aaa;
+    border-radius: 10px;
+}
+
+
+.answers .answer.selected {
+    border-color: #114c85;
+}

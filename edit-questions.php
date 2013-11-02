@@ -31,7 +31,7 @@ if ($fnam) {
 
 	$first = true;
 	foreach ($files as $f) {
-		if (strpos($f, ".json") != strlen($f)-5) {
+		if (strpos($f, ".json") != strlen($f)-5 && $f{0} != 0) {
 			continue;
 		}
 	
