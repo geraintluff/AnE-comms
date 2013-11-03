@@ -3,21 +3,30 @@ var lang;
 // Render a question
 Jsonary.render.register({
 	renderHtml: function (data, context) {
-		result = '<div class="question">' + context.renderHtml(data.property("questionText"))+'</div>';
+		result = '<div class="question-block">';
+		result += '<div class="question">' + context.renderHtml(data.property("questionText"))+'</div>';
 
-		data.properties(['questionText', 'answers', 'imageAnswer'], false, function (key, subData) {
-			result += '<div class="unknown unknown-' + Jsonary.escapeHtml(key) + '">';
-			result += '<span class="unknown-key">' + Jsonary.escapeHtml(key) + ': </span>';
+		data.properties(['questionText', 'answers'], false, function (key, subData) {
+			result += '<div class="other other-' + Jsonary.escapeHtml(key) + '">';
+			result += '<span class="other-key">' + Jsonary.escapeHtml(key) + ': </span>';
 			result += context.renderHtml(subData);
 			result += '</div>';
 		});
-		result += '<div class="image-answer">';
-		result += context.renderHtml(data.property('imageAnswer'));
-		result += '</div>';
+		if (!data.readOnly()) {
+			var definedProperties = data.schemas().definedProperties();
+			data.properties(definedProperties, function (key, subData) {
+				if (!subData.defined()) {
+					result += '<div class="other other-' + Jsonary.escapeHtml(key) + '">';
+					result += '<span class="other-key">' + Jsonary.escapeHtml(key) + ': </span>';
+					result += context.renderHtml(subData);
+					result += '</div>';
+				}
+			});
+		}
 		result += '<div class="answers">';
 		result += context.renderHtml(data.property('answers'));
 		result += '</div>';
-		return result;
+		return result + '</div>';
 	},
 	filter: {
 		schema: "question.json"
