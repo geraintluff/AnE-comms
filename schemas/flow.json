@@ -1,0 +1,20 @@
+{
+	"title": "Flow",
+	"type": "object",
+	"properties": {
+		"title": {"type":"string"},
+		"questions": {
+			"type":"array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"href": {"type": "string"},
+					"questionText": {"type": "object", "allOf": {"$ref": "question.json#/definitions/message"}}
+			
+				},
+				"links": [{"rel": "full", "href":"{href}"}]
+			}
+		}
+	}
+}
+

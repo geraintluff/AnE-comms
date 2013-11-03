@@ -1,4 +1,4 @@
-var x = function() {
+var questionDisplay = function() {
     var req;
 
     function loadUri(url) {
@@ -11,8 +11,18 @@ var x = function() {
 	});
     }
 
+    function loadFlow(url) {
+	req = Jsonary.getData(url);
+	$('#nav').empty().addClass("loading");
+	req.getData(function(data) {
+	    $('#nav').removeClass("loading").empty().renderJson(data);
+	});
+    }
 
     $(function() {
-	loadUri("questions/sample.json");
+	//loadUri("questions/sample.json");
+	loadFlow("flows/chestpain.json");
     });
+
+    return {loadUri: loadUri};
 }();
