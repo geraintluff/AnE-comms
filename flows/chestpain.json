@@ -1,6 +1,35 @@
 {
 	"title": "Chest pain",
 	"questions":
-	[{"href":"../questions/test-blah.json","questionText":{"en":"What animal are you?"}},
-	 {"href":"../questions/sample.json","questionText":{"en":"What is your favourite colour?"}}]
+	[
+	 {"href":"../questions/.json","questionText":{"en":"What's the problem?"}},
+	 {"href":"../questions/where-does-it-hurt.json","questionText":{"en":"Where is the pain?"}},
+	 {"href":"../questions/.json","questionText":{"en":"When did the pain start?"}},
+	 {"href":"../questions/Sudden-or-gradual.json","questionText":{"en":"Sudden or gradual?"}},
+	 {"href":"../questions/Is-the-pain-getting-better-or-worse.json","questionText":{"en":"Getting better/worse?"}},
+	 {"href":"../questions/what-is-the-like.json","questionText":{"en":"What is the pain like?"}},
+	 {"href":"../questions/does-the-pain-move.json","questionText":{"en":"Does it move?"}},
+	 {"href":"../questions/.json","questionText":{"en":"Associated symptoms?"}},
+	 {"href":"../questions/pain-constant-come-and-go.json","questionText":{"en":"Is it constant?"}},
+	 {"href":"../questions/.json","questionText":{"en":"Taking and medecines?"}},
+	 {"href":"../questions/worsening-factors.json","questionText":{"en":"Anything that makes it worse?"}},
+	 
+	 {"href":"../questions/severity.json","questionText":{"en":"How bad is the pain?"}},
+	
+	 {"href":"../questions/.json","questionText":{"en":"Has it happened before?"}},
+	 
+	 {"href":"../questions/.json","questionText":{"en":"What was the cause?"}},
+	 
+	 {"href":"../questions/.json","questionText":{"en":"Risk factors"}},
+	 
+	 {"href":"../questions/.json","questionText":{"en":"How much do you smoke?"}},
+	 
+	 {"href":"../questions/.json","questionText":{"en":"Do you drink?"}},
+	 {"href":"../questions/.json","questionText":{"en":"How much do you drink?"}},
+	 
+	 {"href":"../questions/.json","questionText":{"en":"Family history of chest pain?"}},
+	 
+	 {"href":"../questions/.json","questionText":{"en":"What was the cause?"}}
+	]
 }
+
