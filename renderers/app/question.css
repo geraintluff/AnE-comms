@@ -10,6 +10,10 @@
     max-height: 200px;
 }
 
+.imageAnswer {
+    position: relative;
+}
+
 .answers {
     padding: 40px;
     text-align: center;

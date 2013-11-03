@@ -50,5 +50,18 @@ $(function() {
 	$('.answer').removeClass('selected');
 	$(this).addClass('selected');
     });
-});
 
+    $('body').on('click', '.imageAnswer', null, function(evt) {
+	var jq = $(this);
+	var ch = $(this).get('.crossHair');
+	if (!ch) {
+	    ch = $('<img class="crossHair" src="img/crosshair.png">');
+	    jq.append(ch);
+	}
+	var p = jq.offset();
+	ch.css({position: "absolute",
+		"left": evt.pageX - p.left,
+		"top":evt.pageY - p.top
+	       });
+    });
+});
