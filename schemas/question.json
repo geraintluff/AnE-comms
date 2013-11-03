@@ -3,6 +3,20 @@
 	"type": "object",
 	"properties": {
 		"questionText": {"$ref": "#/definitions/message"},
+		"imageAnswer": {
+			"type": "object",
+			"required": ["img"],
+			"properties": {
+				"img": {
+					"type": "string",
+					"media": {
+						"type": "image/*",
+						"binaryEncoding": "base64"
+					}
+				},
+				"caption": {"$ref": "#/definitions/message"}
+			}
+		},
 		"answers": {
 			"type": "array",
 			"items": {

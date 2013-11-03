@@ -12,7 +12,7 @@ Jsonary.render.register({
 	    result += Jsonary.escapeHtml(item.propertyValue("questionText").en);
 	    result += '</a></li>';
 	}
-	result += '</ul>';
+
 	return result;
     },
     enhance: function(elt, data, ctx) {

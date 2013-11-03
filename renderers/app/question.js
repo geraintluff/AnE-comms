@@ -29,6 +29,11 @@ Jsonary.render.register({
 	result += '<div class="answers">';
 	var answers = data.property('answers');
 
+	var imageAnswer = data.propertyValue('imageAnswer');
+	if (imageAnswer) {
+	    result += '<div class="imageAnswer"><img src="data:;base64,'+imageAnswer+'"></div>"';
+	}
+
 	for (var i=0; i<answers.length(); i++) {
 	    result += '<div class="answer">' + context.renderHtml(answers.item(i)) + '</div>';
 	}
