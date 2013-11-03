@@ -5,7 +5,7 @@ Jsonary.render.register({
 	renderHtml: function (data, context) {
 		result = '<div class="question">' + context.renderHtml(data.property("questionText"))+'</div>';
 
-		data.properties(['questionText', 'answers', 'image-answer'], false, function (key, subData) {
+		data.properties(['questionText', 'answers', 'imageAnswer'], false, function (key, subData) {
 			result += '<div class="unknown unknown-' + Jsonary.escapeHtml(key) + '">';
 			result += '<span class="unknown-key">' + Jsonary.escapeHtml(key) + ': </span>';
 			result += context.renderHtml(subData);
