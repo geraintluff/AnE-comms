@@ -51,6 +51,7 @@
 					}
 				}
 			},
+			"required": ["en"],
 			"additionalProperties": {
 				"type": "string"
 			},
