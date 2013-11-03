@@ -5,6 +5,15 @@ Jsonary.render.register({
 	renderHtml: function (data, context) {
 		result = '<div class="question">' + context.renderHtml(data.property("questionText"))+'</div>';
 
+		data.properties(['questionText', 'answers', 'image-answer'], false, function (key, subData) {
+			result += '<div class="unknown unknown-' + Jsonary.escapeHtml(key) + '">';
+			result += '<span class="unknown-key">' + Jsonary.escapeHtml(key) + ': </span>';
+			result += context.renderHtml(subData);
+			result += '</div>';
+		});
+		result += '<div class="image-answer">';
+		result += context.renderHtml(data.property('image-answer'));
+		result += '</div>';
 		result += '<div class="answers">';
 		result += context.renderHtml(data.property('answers'));
 		result += '</div>';

@@ -20,8 +20,7 @@ Jsonary.render.register({
     }
 });
 
-
-// Render date-picker question
+// Render date-picker answer
 Jsonary.render.register({
 	renderHtml: function (data, context) {
 		var result = '';

@@ -31,7 +31,6 @@
 	},
 	"required": ["questionText", "answers"],
 	"default": {
-		"type": "basic",
 		"questionText": {
 			"en": "What is your favourite colour?",
 			"de": "Was ist seine leibste Farbe?"
