@@ -47,6 +47,18 @@ var questionDisplay = function() {
 	    loadFlowIdx(navIdx);
 	});
 	//$('#langSelect').change();
+
+	var navVisible = false;
+
+
+	$('#navContainer .showHide').click(function(evt) {
+	    navVisible = !navVisible;
+	   
+	    $('#navContainer').animate({left: navVisible ? 0 : -250});
+
+	    evt.preventDefault();
+	    return false;
+	});
     });
 
     return {loadUri: loadUri, loadFlowIdx: loadFlowIdx, getFlowIdx: getFlowIdx,

@@ -66,14 +66,21 @@ Jsonary.render.register({
 
 	var imageAnswer = data.propertyValue('imageAnswer');
 	if (imageAnswer) {
-	    result += '<div class="imageAnswer"><img src="data:;base64,'+imageAnswer.img+'"></div>"';
+	    result += '<div class="imageAnswer"><img src="data:;base64,'+imageAnswer.img+'"></div>';
 	}
 
 	for (var i=0; i<answers.length(); i++) {
-	    result += '<div class="answer">' + context.renderHtml(answers.item(i)) + '</div>';
+	    result += '<a class="answer">' + context.renderHtml(answers.item(i)) + '</a>';
 	}
 	result += '</div>';
 	return result;
+    },
+    enhance: function(elt, data, context) {
+	$(elt).find(".answer").on('click', function (evt) {
+	    console.log("click");
+	    $('.answer').removeClass('selected');
+	    $(this).addClass('selected');
+	});
     },
     filter: {
 	schema: "question.json"
@@ -81,12 +88,7 @@ Jsonary.render.register({
 });
 
 $(function() {
-    $('body').on('click', '.answer', null, function (evt) {
-	$('.answer').removeClass('selected');
-	$(this).addClass('selected');
-    });
-
-    $('body').on('click', '.imageAnswer', null, function(evt) {
+    $('body').on('click, tap', '.imageAnswer', null, function(evt) {
 	var jq = $(this);
 	var ch = $(this).find('.crossHair');
 	if (ch.length==0) {

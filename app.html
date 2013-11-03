@@ -6,6 +6,7 @@
 
 		<script src="js/page.app.js"></script>
 
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
  
 		<script src="js/jsonary-super-bundle.js"></script>
@@ -21,18 +22,21 @@
 	<body>
 	  <div data-role="page">
 	    <div data-role="content" style="margin: 0; padding: 0">
-	      <div id="navBar">
-		<div class="langSelect">
-		  <select id="langSelect">
-		    <option value="de">Deutsch</option>
-		    <option value="es">Español</option>
-		    <option value="zh">中文</option>
-		  </select>
+	      <div id="navContainer">
+		<div id="navBar">
+		  <div class="langSelect">
+		    <select id="langSelect">
+		      <option value="de">Deutsch</option>
+		      <option value="es">Español</option>
+		      <option value="zh">中文</option>
+		    </select>
+		  </div>
+		  <div id="nav">
+		  </div>
 		</div>
-		<div id="nav">
-		</div>
+		<a class="showHide" href="#"><img src="img/menubutton.png"/></a>
 	      </div>
-	      <div id="question" style="margin-left: 300px"></div>
+	      <div id="question"></div>
 	    </div>
 	  </div>
 
