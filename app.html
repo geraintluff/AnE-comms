@@ -3,10 +3,12 @@
 	<head>
 		<title>A&amp;E Communication Tool</title>
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-		<!--<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>-->
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
  
 		<script src="js/jsonary-super-bundle.js"></script>
 		<script src="renderers/app/question.js"></script>
+		<script src="renderers/app/nav.js"></script>
 		<link rel="stylesheet" href="renderers/app/question.css" />
 
 		<script src="js/page.app.js"></script>
@@ -15,7 +17,10 @@
 	</head>
 	<body>
 	  <div data-role="page">
-	    <div id="question"></div>
+	    <div data-role="content" style="margin: 0; padding: 0">
+	      <div id="nav"></div>
+	      <div id="question" style="margin-left: 330px"></div>
+	    </div>
 	  </div>
 
 	</body>
