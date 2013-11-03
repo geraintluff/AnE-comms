@@ -1,5 +1,5 @@
 var questionDisplay = function() {
-    var lang = 'de';
+    var lang = 'zh';
 
     var nav, navIdx = 0;
 
@@ -28,9 +28,45 @@ var questionDisplay = function() {
 	navIdx = idx;
 	$('#nav').empty().renderJson(nav);
 	loadUri(nav.property('questions').item(idx).getLink('full').href);
+
+	// How far are we through nav? Just hack this
+	function disp(fname, enable) {
+	    var r='';
+	    if (enable) {
+		r += '<a href="#" onclick="questionDisplay.'+fname+'Flow()">';
+	    }
+
+	    r += '<img class="btn" src="img/btn-'+fname+(enable?'':'-disabled')+'.png">';
+
+	    if (enable) {
+		r += '</a>';
+	    }
+	    return r;
+	}
+
+	bnav = disp('prev', idx != 0);
+	for (var i=0; i<getNFlow(); i++) {
+	    bnav += '<img class="dot" src="img/nav-dot-'+((i<=idx)?'on':'off')+'.png">';
+	}
+	bnav += disp('next', idx < getNFlow()-1);
+	$('#bottomNav').html(bnav);
     }
 
+
     function getFlowIdx() { return navIdx; }
+    function getNFlow() { return nav ? (nav.property('questions').length()) : 0; }
+
+    function nextFlow() {
+	navIdx++;
+	if (navIdx >= getNFlow()) { navIdx = getNFlow()-1; }
+	loadFlowIdx(navIdx);
+    }
+
+    function prevFlow() {
+	navIdx--;
+	if (navIdx <= 0) { navIdx = 0; }
+	loadFlowIdx(navIdx);
+    }
 
     $(document).bind('mobileinit', function() {
 	$.mobile.ajaxEnabled=false;
@@ -62,5 +98,6 @@ var questionDisplay = function() {
     });
 
     return {loadUri: loadUri, loadFlowIdx: loadFlowIdx, getFlowIdx: getFlowIdx,
-	    getLang: function() { return lang; }};
+	    getNFlow: getNFlow(), getLang: function() { return lang; },
+	    nextFlow: nextFlow, prevFlow: prevFlow};
 }();
