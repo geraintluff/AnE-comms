@@ -21,6 +21,8 @@ body {
 
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+
+    z-index: 1;
 }
 
 #navContainer .showHide {
