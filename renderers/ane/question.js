@@ -71,9 +71,6 @@ Jsonary.render.register({
 			console.log(value);
 		}
 	},
-	render: function (element, data, context) {
-		
-	},
 	filter: {
 		readOnly: true,
 		type: 'string',
