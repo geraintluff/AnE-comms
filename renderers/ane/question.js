@@ -1,5 +1,20 @@
 var lang;
 
+// Render a question
+Jsonary.render.register({
+	renderHtml: function (data, context) {
+		result = '<div class="question">' + context.renderHtml(data.property("questionText"))+'</div>';
+
+		result += '<div class="answers">';
+		result += context.renderHtml(data.property('answers'));
+		result += '</div>';
+		return result;
+	},
+	filter: {
+		schema: "question.json"
+	}
+});
+
 // Render translated text
 Jsonary.render.register({
 	renderHtml: function (data, context) {
@@ -23,20 +38,5 @@ Jsonary.render.register({
 	filter: {
 		readOnly: true,
 		schema: "question.json#/definitions/message"
-	}
-});
-
-// Render a question
-Jsonary.render.register({
-	renderHtml: function (data, context) {
-		result = '<div class="question">' + context.renderHtml(data.property("questionText"))+'</div>';
-
-		result += '<div class="answers">';
-		result += context.renderHtml(data.property('answers'));
-		result += '</div>';
-		return result;
-	},
-	filter: {
-		schema: "question.json"
 	}
 });
