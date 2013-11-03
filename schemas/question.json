@@ -3,6 +3,7 @@
 	"type": "object",
 	"properties": {
 		"questionText": {"$ref": "#/definitions/message"},
+		"multipleAnswers": {"type": "boolean"},
 		"imageAnswer": {
 			"type": "object",
 			"required": ["img"],
