@@ -3,7 +3,10 @@
 	"type": "object",
 	"properties": {
 		"questionText": {"$ref": "#/definitions/message"},
-		"multipleAnswers": {"type": "boolean"},
+		"multipleAnswers": {
+			"type": "boolean",
+			"default": false
+		},
 		"imageAnswer": {
 			"title": "Big image",
 			"type": "object",
@@ -26,11 +29,10 @@
 					{"$ref": "#/definitions/message"},
 					{"$ref": "#/definitions/date-time"}
 				]
-			},
-			"minItems": 1
+			}
 		}
 	},
-	"required": ["questionText", "answers"],
+	"required": ["questionText", "multipleAnswers", "answers"],
 	"default": {
 		"questionText": {
 			"en": "What is your favourite colour?",
