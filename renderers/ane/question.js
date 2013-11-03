@@ -12,7 +12,7 @@ Jsonary.render.register({
 			result += '</div>';
 		});
 		result += '<div class="image-answer">';
-		result += context.renderHtml(data.property('image-answer'));
+		result += context.renderHtml(data.property('imageAnswer'));
 		result += '</div>';
 		result += '<div class="answers">';
 		result += context.renderHtml(data.property('answers'));
