@@ -1,1 +1,1 @@
-AddType application/json;profile=/~meredydd/ane/schemas/question.json .json
+AddType application/json;profile=../schemas/question.json .json
