@@ -26,8 +26,7 @@
 					{"$ref": "#/definitions/message"},
 					{"$ref": "#/definitions/date-time"}
 				]
-			},
-			"minItems": 1
+			}
 		}
 	},
 	"required": ["questionText", "answers"],
