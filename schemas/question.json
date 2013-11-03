@@ -5,6 +5,7 @@
 		"questionText": {"$ref": "#/definitions/message"},
 		"multipleAnswers": {"type": "boolean"},
 		"imageAnswer": {
+			"title": "Big image",
 			"type": "object",
 			"required": ["img"],
 			"properties": {

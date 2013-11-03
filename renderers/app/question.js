@@ -67,7 +67,7 @@ Jsonary.render.register({
 
 	var imageAnswer = data.propertyValue('imageAnswer');
 	if (imageAnswer) {
-	    result += '<div class="imageAnswer"><img src="data:;base64,'+imageAnswer+'"></div>"';
+	    result += '<div class="imageAnswer"><img src="data:;base64,'+imageAnswer.img+'"></div>"';
 	}
 
 	for (var i=0; i<answers.length(); i++) {
@@ -89,15 +89,15 @@ $(function() {
 
     $('body').on('click', '.imageAnswer', null, function(evt) {
 	var jq = $(this);
-	var ch = $(this).get('.crossHair');
-	if (!ch) {
+	var ch = $(this).find('.crossHair');
+	if (ch.length==0) {
 	    ch = $('<img class="crossHair" src="img/crosshair.png">');
 	    jq.append(ch);
 	}
 	var p = jq.offset();
 	ch.css({position: "absolute",
-		"left": evt.pageX - p.left,
-		"top":evt.pageY - p.top
+		"left": evt.pageX - p.left - 50,
+		"top":evt.pageY - p.top - 50
 	       });
     });
 });
