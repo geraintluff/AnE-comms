@@ -2,23 +2,16 @@
 	"title": "Question",
 	"type": "object",
 	"properties": {
-		"questionText": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/message"
-				}
-			]
-		},
+		"questionText": {"$ref": "#/definitions/message"},
 		"answers": {
 			"type": "array",
 			"items": {
-				"allOf": [
-					{
-						"$ref": "#/definitions/message"
-					}
+				"oneOf": [
+					{"$ref": "#/definitions/message"},
+					{"$ref": "#/definitions/date-time"}
 				]
-			}
+			},
+			"minItems": 1
 		}
 	},
 	"required": ["questionText", "answers"],
@@ -41,6 +34,7 @@
 	},
 	"definitions": {
 		"message": {
+			"title": "Translated text",
 			"type": "object",
 			"properties": {
 				"image": {
@@ -58,6 +52,10 @@
 			"default": {
 				"en": "Question?"
 			}
+		},
+		"date-time": {
+			"title": "Date/time answer",
+			"enum": ["date-time"]
 		},
 		"editableQuestion": {
 			"type": "object",
