@@ -10,7 +10,6 @@ var questionDisplay = function() {
 	$('#question').empty().addClass("loading");
 	window.scrollTo(0, 0);
 	req.getData(function(data, request) {
-	    console.log(data.value());
 	    $('#question').removeClass("loading").empty().renderJson(data);
 	});
     }
@@ -33,14 +32,21 @@ var questionDisplay = function() {
 
     function getFlowIdx() { return navIdx; }
 
+    $(document).bind('mobileinit', function() {
+	$.mobile.ajaxEnabled=false;
+	$.mobile.hashListeningEnabled=false;
+    });
+
     $(function() {
 	//loadUri("questions/sample.json");
-	loadFlow("flows/chestpain.json");
+
+	loadFlow (window.location.href.match(/.*localhost.*/) ? 'flows/test.json' : 'flows/chestpain.json');
 
 	$('#langSelect').change(function() {
-	    lang = $(this).val;
+	    lang = $(this).val();
 	    loadFlowIdx(navIdx);
 	});
+	//$('#langSelect').change();
     });
 
     return {loadUri: loadUri, loadFlowIdx: loadFlowIdx, getFlowIdx: getFlowIdx,

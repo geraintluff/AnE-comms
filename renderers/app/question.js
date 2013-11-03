@@ -2,6 +2,7 @@
 Jsonary.render.register({
     renderHtml: function(data, ctx) {
 	lang = questionDisplay.getLang();
+
 	var result = '<div class="translation">';
 
 	var img = data.propertyValue('image');

@@ -16,7 +16,6 @@ Jsonary.render.register({
 	return result;
     },
     enhance: function(elt, data, ctx) {
-	console.log(elt);
 	$(elt).trigger('create');
 	$(elt).on('click', 'a', null, function(evt) {
 	    questionDisplay.loadFlowIdx($(this).attr('data-idx'));

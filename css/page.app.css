@@ -15,6 +15,10 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
+#navBar .langSelect {
+    margin: 2px 10px 10px;
+}
+
 #nav {
     padding: 15px;
 }
