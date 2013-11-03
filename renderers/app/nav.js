@@ -5,8 +5,10 @@ Jsonary.render.register({
 	var l = data.property('questions');
 	for (var i=0; i<l.length(); i++) {
 	    var item = l.item(i);
-	    var eu = Jsonary.escapeHtml(item.getLink('full').href);
-	    result += '<li><a href="#" data-uri="'+eu+'">';
+
+	    var theme = (i==questionDisplay.getFlowIdx())?'data-theme="a"':'';
+
+	    result += '<li '+theme+' id="nav_'+i+'"><a href="#" data-idx="'+i+'">';
 	    result += Jsonary.escapeHtml(item.propertyValue("questionText").en);
 	    result += '</a></li>';
 	}
@@ -14,10 +16,10 @@ Jsonary.render.register({
 	return result;
     },
     enhance: function(elt, data, ctx) {
+	console.log(elt);
 	$(elt).trigger('create');
 	$(elt).on('click', 'a', null, function(evt) {
-	    console.log("Loading "+$(this).attr('data-uri'));
-	    questionDisplay.loadUri($(this).attr('data-uri'));
+	    questionDisplay.loadFlowIdx($(this).attr('data-idx'));
 	    evt.preventDefault();
 	    return false;
 	});

@@ -1,4 +1,6 @@
 var questionDisplay = function() {
+    var nav, navIdx = 0;
+
     var req;
 
     function loadUri(url) {
@@ -15,14 +17,23 @@ var questionDisplay = function() {
 	req = Jsonary.getData(url);
 	$('#nav').empty().addClass("loading");
 	req.getData(function(data) {
+	    nav = data;
 	    $('#nav').removeClass("loading").empty().renderJson(data);
 	});
     }
+
+    function loadFlowIdx(idx) {
+	navIdx = idx;
+	$('#nav').empty().renderJson(nav);
+	loadUri(nav.property('questions').item(idx).getLink('full').href);
+    }
+
+    function getFlowIdx() { return navIdx; }
 
     $(function() {
 	//loadUri("questions/sample.json");
 	loadFlow("flows/chestpain.json");
     });
 
-    return {loadUri: loadUri};
+    return {loadUri: loadUri, loadFlowIdx: loadFlowIdx, getFlowIdx: getFlowIdx};
 }();
