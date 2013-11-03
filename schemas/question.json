@@ -65,7 +65,7 @@
 				"type": "string"
 			},
 			"default": {
-				"en": "Question?"
+				"en": ""
 			}
 		},
 		"date-time": {

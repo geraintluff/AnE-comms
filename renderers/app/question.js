@@ -1,9 +1,7 @@
-var lang;
-
 // Render translated text
 Jsonary.render.register({
     renderHtml: function(data, ctx) {
-	lang = lang || 'de';
+	lang = questionDisplay.getLang();
 	var result = '<div class="translation">';
 
 	var img = data.propertyValue('image');

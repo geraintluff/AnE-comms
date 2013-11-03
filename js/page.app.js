@@ -1,4 +1,6 @@
 var questionDisplay = function() {
+    var lang = 'de';
+
     var nav, navIdx = 0;
 
     var req;
@@ -19,6 +21,7 @@ var questionDisplay = function() {
 	req.getData(function(data) {
 	    nav = data;
 	    $('#nav').removeClass("loading").empty().renderJson(data);
+	    loadFlowIdx(0);
 	});
     }
 
@@ -33,7 +36,13 @@ var questionDisplay = function() {
     $(function() {
 	//loadUri("questions/sample.json");
 	loadFlow("flows/chestpain.json");
+
+	$('#langSelect').change(function() {
+	    lang = $(this).val;
+	    loadFlowIdx(navIdx);
+	});
     });
 
-    return {loadUri: loadUri, loadFlowIdx: loadFlowIdx, getFlowIdx: getFlowIdx};
+    return {loadUri: loadUri, loadFlowIdx: loadFlowIdx, getFlowIdx: getFlowIdx,
+	    getLang: function() { return lang; }};
 }();
